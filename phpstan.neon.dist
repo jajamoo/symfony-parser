@@ -1,0 +1,36 @@
+##
+# PHP Stan Configuration file
+#
+# References:
+# - https://phpstan.org
+# - https://phpstan.org/config-reference
+# - https://github.com/phpstan/phpstan
+# - https://phpstan.org/user-guide/ignoring-errors
+parameters:
+    # https://phpstan.org/user-guide/rule-levels | 0-9; 9 is the most strict
+    level: 9
+    paths:
+        - config
+        - src
+        - tests
+        - public/index.php
+        - bin/console
+    excludePaths:
+        - config/preload.php
+    scanDirectories:
+        - var/cache/dev/Symfony/Config
+    checkGenericClassInNonGenericObjectType: false
+    # https://phpstan.org/config-reference#ignoring-errors
+    ignoreErrors:
+        #- '#Property .* is never read, only written.#'
+        #- '#Command .* does not define argument .*#'
+        #- '#.*\|null but database expects.*#'
+
+    # https://github.com/phpstan/phpstan-doctrine
+    doctrine:
+        objectManagerLoader: tests/object-manager.php
+
+    # https://github.com/phpstan/phpstan-symfony
+    symfony:
+        container_xml_path: var/cache/dev/App_KernelDevDebugContainer.xml
+        console_application_loader: tests/console-application.php

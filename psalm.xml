@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+ * Psalm Configuration file
+ *
+ * Error levels: 1-8; 1 is most strict
+ *
+ * References:
+ * - https://github.com/vimeo/psalm
+ * - https://github.com/vimeo/psalm/tree/master/docs
+ * - https://github.com/vimeo/psalm/blob/master/docs/running_psalm/configuration.md
+ * - https://github.com/vimeo/psalm/blob/master/docs/running_psalm/error_levels.md
+ * - https://github.com/vimeo/psalm/blob/master/psalm.xml.dist
+ * - https://psalm.dev/docs/running_psalm/dealing_with_code_issues/
+-->
+<psalm
+    errorLevel="1"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="config"/>
+        <directory name="src" />
+        <directory name="tests"/>
+        <ignoreFiles>
+            <directory name="var"/>
+            <directory name="vendor"/>
+            <file name="config/preload.php"/>
+            <file name="tests/bootstrap.php"/>
+        </ignoreFiles>
+    </projectFiles>
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
+        <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
+    </plugins>
+    <issueHandlers>
+        <LessSpecificReturnType errorLevel="suppress"/>
+        <PluginIssue name="InvalidConsoleArgumentValue" errorLevel="suppress" />
+        <UnnecessaryVarAnnotation errorLevel="suppress"/>
+        <UnusedClosureParam errorLevel="suppress"/>
+    </issueHandlers>
+</psalm>
