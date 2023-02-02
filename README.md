@@ -1,5 +1,3 @@
-[[_TOC_]]
-
 # Symfony PHP Parser
 
 Thank you for your interest in joining the technology team at Second Wave Delivery Systems!
