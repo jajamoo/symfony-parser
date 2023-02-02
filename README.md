@@ -24,8 +24,10 @@ The files you'll need to complete the test are included in the `data` folder at 
 6. (optional) Install the [Symfony Binary](https://symfony.com/download)
 
 ## Running it:
-1. Type: ```shell
-php bin/console mor_file:parser data/mor-file-clean.txt ```
+1. Type: 
+```shell
+php bin/console mor_file:parser data/mor-file-clean.txt 
+```
 
 ## Running tests
 You can run tests with the following command:
@@ -37,9 +39,3 @@ You can fix your code smell using [CS Fixer](https://github.com/FriendsOfPHP/PHP
 ```shell
 bin/csfixer
 ```
-
-## More reading materials
-- https://symfony.com/
-- https://symfony.com/doc/5.4/index.html
-- https://symfony.com/doc/5.4/controller.html
-- https://symfony.com/doc/5.4/doctrine.html
