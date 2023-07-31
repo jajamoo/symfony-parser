@@ -1,6 +1,7 @@
 # Symfony PHP Parser
 
-Thank you for your interest in joining the technology team at Second Wave Delivery Systems!
+This is Parser written in Symfony.
+
 
 ## Parser
 Parser File, Inserts into DB, and a Unit test that goes with it. Symfony 5.4

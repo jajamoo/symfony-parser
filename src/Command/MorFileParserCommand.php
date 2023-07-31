@@ -75,6 +75,7 @@ class MorFileParserCommand extends Command
             while (($line = fgets($handle)) !== false) {
                 $stringChopper = '';
 
+                //remove whitespaces from the ends of string
                 $trimmedString = trim($line);
 
                 $recordTypeCode = substr($trimmedString, 0, 1);
@@ -84,21 +85,31 @@ class MorFileParserCommand extends Command
                 $stringChopper .= $mbiString;
 
                 $trimmedString = $this->chopBeginningOfString($stringChopper, $trimmedString);
+
+                //last 128 characters of the string
                 $descriptionString = substr($trimmedString, -128);
 
                 $trimmedString = $this->chopEndOfString($descriptionString, $trimmedString);
+
                 // break remaining string up by spaces
                 $parts = preg_split('/\s+/', $trimmedString);
 
+                //various permutations of a type of row
                 if (3 === count($parts)) {
                     $lastName = $parts[0];
                     $firstName = $parts[1];
 
                     if (preg_match('/^[a-zA-Z]/', $parts[2])) {
+                        //extract first letter
                         $initialString = substr($parts[2], 0, 1);
+
+                        //chop string now that we have the initial letter (record type)
                         $remainingString = $this->chopBeginningOfString($initialString, $parts[2]);
 
+                        //first 8 characters
                         $dobString = substr($remainingString, 0, 8);
+
+                        //LAST character
                         $sex = substr($remainingString, -1);
                     } else {
                         $dobString = substr($parts[2], 0, 8);
@@ -107,7 +118,12 @@ class MorFileParserCommand extends Command
                 } elseif (2 === count($parts)) {
                     $lastName = $parts[0];
 
+                    //**
+
+                    //match: 1 or more numbers
+                    //NB: last param has & , returns the reference to the var
                     preg_match('/([0-9]+)/', $parts[1], $matches);
+                    //match: 1 or more letters, capital or lower
                     preg_match('/([a-zA-Z]+)/', $parts[1], $lmatches);
 
                     if ($matches) {
