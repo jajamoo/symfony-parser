@@ -1,6 +1,6 @@
 # Symfony PHP Parser
 
-This is Parser written in Symfony.
+This is a file parser written in Symfony.
 
 
 ## Parser
